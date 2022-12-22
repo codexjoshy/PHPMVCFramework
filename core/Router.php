@@ -4,12 +4,14 @@ namespace app\core;
 
 class Router
 {
- protected array $routes = [];
  public Request $request;
+ public Response $response;
+ protected array $routes = [];
 
- public function __construct(Request $request)
+ public function __construct(Request $request, Response $response)
  {
   $this->request = $request;
+  $this->response = $response;
  }
 
  /**
@@ -29,7 +31,13 @@ class Router
   $path = $this->request->getPath();
   $method = $this->request->getMethod();
   $callback = $this->routes[$method][$path] ?? false;
-  if (!$callback) return "Not Found";
+
+  if (!$callback) {
+   Application::$app->response->setStatusCode(404);
+
+   return $this->renderView("errors/404");
+  }
+
   if (is_string($callback)) {
    return $this->renderView($callback);
   }
@@ -48,6 +56,17 @@ class Router
   $viewContents = $this->getViewContents($view);
   return str_replace("{{ content }}", $viewContents, $layoutContents);
   include_once Application::$ROOT_DIR . "/views/$view.php";
+ }
+ /**
+  * Undocumented function
+  *
+  * @param [type] $view
+  * @return void
+  */
+ public function renderContent($content)
+ {
+  $layoutContents = $this->layoutContent();
+  return str_replace("{{ content }}", $content, $layoutContents);
  }
 
  /**
