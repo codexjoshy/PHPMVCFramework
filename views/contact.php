@@ -1,7 +1,7 @@
-<h1>Contact</h1>
+<h1>Contact <?= $name ?></h1>
 <div class='row'>
  <div class='col-6'>
-  <form>
+  <form action="" method="post">
    <div class="form-group">
     <label for="exampleInputEmail1">Email address</label>
     <input name='email' type="email" class="form-control" />
