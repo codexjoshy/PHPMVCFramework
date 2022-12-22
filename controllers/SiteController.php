@@ -24,6 +24,6 @@ class SiteController extends BaseController
  }
  public  function handleContact(Request $request)
  {
-  $request->dd($request->all());
+  // $request->dd($request->all());
  }
 }
