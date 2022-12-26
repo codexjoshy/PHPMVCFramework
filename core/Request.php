@@ -53,6 +53,51 @@ class Request
   return $body;
  }
 
+ /**
+  * Undocumented function
+  *
+  * @param array $data
+  * @return array
+  */
+ public function validate(array $validationList): array
+ {
+  // [
+  //  "name"=> "required|string|"
+  // ]
+  $requestData = $this->all();
+
+  foreach ($validationList as $field => $validationString) {
+   $validationArray = explode("|", $validationString);
+   $errors = $data = [];
+   if (isset($requestData[$field])) {
+    foreach ($validationArray as $validation) {
+     if ($validation) {
+      switch ($validation) {
+       case 'required':
+        if (!$requestData[$field]) $errors[$field] = "$field is required";
+        break;
+       case 'integer':
+        if (!is_int($requestData[$field])) $errors[$field] = "$field is not a valid $validation";
+        break;
+       case 'string':
+        if (!is_string($requestData[$field])) $errors[$field] = "$field is not a valid $validation";
+        break;
+
+       default:
+        # code...
+        break;
+      }
+     }
+    }
+    if (!isset($errors[$field])) $data[$field] = $requestData[$field];
+   } else {
+    $errors[$field] = "invalid field $field passed";
+   }
+  }
+
+
+  return ["data" => $data, "errors" => $errors];
+ }
  public function dd()
  {
   echo '<pre>';

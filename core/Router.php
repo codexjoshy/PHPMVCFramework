@@ -45,7 +45,6 @@ class Router
 
   if (!$callback) {
    Application::$app->response->setStatusCode(404);
-
    return $this->renderView("errors/404");
   }
   if (is_string($callback)) {
@@ -91,7 +90,11 @@ class Router
   */
  protected function layoutContent()
  {
-  $layout = Application::$app->controller->getLayout();
+  if (true) {
+   $layout = Application::$app->controller->layout;
+  } else {
+   $layout = "main";
+  }
   ob_start(); //caches output
   include_once Application::$ROOT_DIR . "/views/layouts/$layout.php";
   return ob_get_clean();

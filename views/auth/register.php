@@ -1,14 +1,17 @@
 <h1>Registration</h1>
+
 <div class='row'>
  <div class='col-6'>
-  <form action="" method="post">
-   <div class="form-group">
-    <label for="exampleInputEmail1">Email address</label>
-    <input name='email' type="email" class="form-control" />
-   </div>
+  <?php $form = \app\core\form\Form::begin('/register', 'post')   ?>
+  <?php echo $form->field($model, 'name') ?>
+  <?php echo $form->field($model, 'email', 'email') ?>
+  <?php echo $form->field($model, 'phone', 'number') ?>
+  <?php echo $form->field($model, 'password')->passwordField() ?>
+  <?php echo $form->field($model, 'confirmPassword')->passwordField() ?>
+  <button type="submit" class="btn btn-primary">Submit</button>
+  <?php \app\core\form\Form::end();  ?>
 
 
-   <button type="submit" class="btn btn-primary">Submit</button>
-  </form>
+
  </div>
 </div>

@@ -11,7 +11,7 @@ class BaseController
   *
   * @var string
   */
- protected string $layout = "main";
+ public string $layout = "main";
 
  /**
   * used to set layout
