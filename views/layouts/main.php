@@ -1,3 +1,9 @@
+<?php
+
+use app\core\Application;
+
+$successFlash = Application::$app->session->getFlash('success');
+?>
 <!doctype html>
 <html lang="en">
 
@@ -44,6 +50,11 @@
     </ul>
    </div>
   </nav>
+  <div class='container'>
+   <?php if ($successFlash) : ?>
+   <div class="alert alert-success"><?= $successFlash ?></div>
+   <?php endif; ?>
+  </div>
   {{ content }}
  </section>
 
