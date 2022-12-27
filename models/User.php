@@ -35,7 +35,16 @@ class User extends DbModel
   return parent::save();
  }
 
-
+ public function labels(): array
+ {
+  return [
+   "email" => "Email Address",
+   "name" => "Full Name",
+   "phone" => "Phone Number",
+   "confirmPassword" => "Confirm Password",
+   "password" => "Password"
+  ];
+ }
  public function rules(): array
  {
 

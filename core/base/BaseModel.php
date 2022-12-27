@@ -13,6 +13,7 @@ abstract class BaseModel
  public const RULE_MATCH = 'match';
  public const RULE_UNIQUE = 'unique';
 
+ abstract function labels(): array;
 
  public function loadData($data)
  {
@@ -38,6 +39,11 @@ abstract class BaseModel
   $this->errors[$attribute][] = $message;
  }
 
+ public function getLabel(string $attribute): string
+ {
+  return $this->labels()[$attribute] ?? $attribute;
+ }
+
 
  public function validate(): bool | array
  {
@@ -60,6 +66,7 @@ abstract class BaseModel
      $this->addError($attribute, self::RULE_MAX, $rule);
     }
     if ($ruleName === self::RULE_MATCH && $value !== $this->{$rule[self::RULE_MATCH]}) {
+     $rule[self::RULE_MATCH] = $this->getLabel($rule[self::RULE_MATCH]);
      $this->addError($attribute, self::RULE_MATCH, $rule);
     }
     if ($ruleName === self::RULE_UNIQUE) {
@@ -73,7 +80,7 @@ abstract class BaseModel
       $statement->bindValue(":$uniqueAttr", $value);
       $statement->execute();
       $record = $statement->fetchObject();
-      if ($record) $this->addError($attribute, self::RULE_UNIQUE, ['field' => $attribute]);
+      if ($record) $this->addError($attribute, self::RULE_UNIQUE, ['field' =>  $this->getLabel($attribute)]);
      }
     }
    }
