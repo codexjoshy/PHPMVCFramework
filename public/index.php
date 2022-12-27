@@ -7,7 +7,8 @@ use app\core\Application;
 use app\controllers\AuthController;
 use app\controllers\SiteController;
 
-$dotenv =  Dotenv\Dotenv::createImmutable(__DIR__);
+$dotenv =  Dotenv\Dotenv::createImmutable($rootPath);
+$dotenv->load();
 $config = [
  "db" => [
   "dsn" => $_ENV['DB_DSN'],
@@ -15,6 +16,7 @@ $config = [
   "password" => $_ENV['DB_PASSWORD'],
  ]
 ];
+
 
 $app = new Application($rootPath, $config);
 $app->router->get('/', [SiteController::class, 'home']);
