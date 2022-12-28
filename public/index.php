@@ -29,4 +29,6 @@ $app->router->get('/logout', [AuthController::class, 'handleLogout']);
 $app->router->get('/contact', [SiteController::class, 'contact']);
 // $app->router->get('/about', [SiteController::class, 'contact']);
 $app->router->post('/contact', [SiteController::class, 'handleContact']);
+
+$app->router->get('/profile', [AuthController::class, 'profile']);
 $app->run();

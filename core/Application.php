@@ -60,8 +60,8 @@ class Application
 
 
  public  $user;
-
- public BaseController $controller;
+ public string $layout = "main";
+ public ?BaseController $controller = null;
 
  public function __construct($rootPath, array $config)
  {
@@ -101,7 +101,12 @@ class Application
 
  public function run()
  {
-  echo $this->router->resolve();
+  try {
+   echo $this->router->resolve();
+  } catch (\Throwable $th) {
+   $this->response->setStatusCode($th->getCode());
+   echo $this->router->renderView('errors/_error', ["exception" => $th]);
+  }
  }
 
  public function login(DbModel $user)

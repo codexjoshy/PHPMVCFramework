@@ -12,6 +12,18 @@ class BaseController
   * @var string
   */
  public string $layout = "main";
+ /**
+  * Undocumented variable
+  *
+  * @var string
+  */
+ public string $action = "";
+ /**
+  * Undocumented variable
+  *
+  * @var BaseMiddleware[]
+  */
+ public array $middlewares = [];
 
  /**
   * used to set layout
@@ -39,5 +51,15 @@ class BaseController
  public function render(string $view, $params = [])
  {
   return Application::$app->router->renderView($view, $params);
+ }
+
+ public function registerMiddleware(BaseMiddleware $middleware)
+ {
+  $this->middlewares[] = $middleware;
+ }
+
+ public function getMiddlewares()
+ {
+  return $this->middlewares;
  }
 }
