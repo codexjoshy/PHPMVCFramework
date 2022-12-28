@@ -61,7 +61,7 @@ class Application
  public  $userClass;
 
 
- public  $user;
+ public  ?UserModel $user;
  public string $layout = "main";
  public ?BaseController $controller = null;
  public View $view;
@@ -112,7 +112,7 @@ class Application
   }
  }
 
- public function login(DbModel $user)
+ public function login(UserModel $user)
  {
   $this->user = $user;
   $primaryKey = $user->primaryKey();

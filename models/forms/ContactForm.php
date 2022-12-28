@@ -28,7 +28,6 @@ class ContactForm extends BaseModel
 
  public function send()
  {
-  var_dump($this->body . " sent successfully");
-  exit;
+  return true;
  }
 }
