@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @var app\models\Login $model
+ * @var app\models\forms\Login $model
  */
 
 

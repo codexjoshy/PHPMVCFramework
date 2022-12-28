@@ -7,7 +7,7 @@ use app\core\base\BaseController;
 use app\core\middlewares\AuthMiddleware;
 use app\core\Request;
 use app\core\Response;
-use app\models\Login;
+use app\models\forms\Login;
 use app\models\User;
 
 class AuthController extends BaseController
@@ -42,7 +42,7 @@ class AuthController extends BaseController
   $user->loadData($request->all());
 
   if ($user->validate() && $user->save()) {
-   $response->redirect('/')->with('success', 'Registration successful');
+   $response->redirect('/login')->with('success', 'Registration successful');
   }
   $this->setLayout('auth');
   return $this->render('auth/register', ['model' => $user]);

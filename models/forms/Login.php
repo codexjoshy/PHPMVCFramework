@@ -1,10 +1,10 @@
 <?php
 
-namespace app\models;
+namespace app\models\forms;
 
+use app\models\User;
 use app\core\Application;
 use app\core\base\BaseModel;
-use app\core\DbModel;
 
 class Login extends BaseModel
 {

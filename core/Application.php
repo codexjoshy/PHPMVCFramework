@@ -62,6 +62,7 @@ class Application
  public  $user;
  public string $layout = "main";
  public ?BaseController $controller = null;
+ public View $view;
 
  public function __construct($rootPath, array $config)
  {
@@ -71,7 +72,7 @@ class Application
   $this->response = new Response;
   $this->session = new Session;
   $this->router = new Router($this->request, $this->response);
-
+  $this->view = new View;
   $this->db = new Database($config['db']);
   $this->userClass = $config['userClass'] ?? null;
   if ($this->userClass && class_exists($this->userClass)) {
@@ -105,7 +106,7 @@ class Application
    echo $this->router->resolve();
   } catch (\Throwable $th) {
    $this->response->setStatusCode($th->getCode());
-   echo $this->router->renderView('errors/_error', ["exception" => $th]);
+   echo Application::$app->view->renderView('errors/_error', ["exception" => $th]);
   }
  }
 

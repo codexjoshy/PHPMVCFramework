@@ -2,6 +2,10 @@
 
 use app\core\Application;
 
+/**
+ * @var app\core\View $this
+ */
+
 $successFlash = Application::$app->session->getFlash('success');
 $errorFlash = Application::$app->session->getFlash('error');
 $isGuest = Application::$app::isGuest();
@@ -19,7 +23,7 @@ $displayName = !$isGuest ? Application::$app->user->getDisplayName() : '';
  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
   integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
 
- <title>Hello, world!</title>
+ <title> <?= $this->title ?></title>
 </head>
 
 <body>
