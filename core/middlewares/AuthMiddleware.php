@@ -8,6 +8,11 @@ use app\core\exceptions\ForbiddenException;
 
 class AuthMiddleware extends BaseMiddleware
 {
+ /**
+  * Undocumented variable
+  *
+  * @var array
+  */
  public array $actions = [];
 
  public function __construct(array $actions = [])
