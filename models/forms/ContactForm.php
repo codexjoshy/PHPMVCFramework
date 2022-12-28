@@ -2,7 +2,7 @@
 
 namespace app\models\forms;
 
-use app\core\base\BaseModel;
+use codexjoshy\sleekmvc\base\BaseModel;
 
 class ContactForm extends BaseModel
 {

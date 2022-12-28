@@ -3,7 +3,7 @@
 $rootPath = dirname(__DIR__);
 require_once $rootPath . "/vendor/autoload.php";
 
-use app\core\Application;
+use codexjoshy\sleekmvc\Application;
 use app\controllers\AuthController;
 use app\controllers\SiteController;
 

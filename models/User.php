@@ -2,7 +2,7 @@
 
 namespace app\models;
 
-use app\core\UserModel;
+use codexjoshy\sleekmvc\UserModel;
 
 class User extends UserModel
 {

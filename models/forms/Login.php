@@ -3,8 +3,8 @@
 namespace app\models\forms;
 
 use app\models\User;
-use app\core\Application;
-use app\core\base\BaseModel;
+use codexjoshy\sleekmvc\Application;
+use codexjoshy\sleekmvc\base\BaseModel;
 
 class Login extends BaseModel
 {

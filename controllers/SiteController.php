@@ -2,9 +2,9 @@
 
 namespace app\controllers;
 
-use app\core\base\BaseController;
-use app\core\Request;
-use app\core\Response;
+use codexjoshy\sleekmvc\base\BaseController;
+use codexjoshy\sleekmvc\Request;
+use codexjoshy\sleekmvc\Response;
 use app\models\forms\ContactForm;
 
 /**

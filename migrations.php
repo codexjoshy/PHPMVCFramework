@@ -3,7 +3,7 @@
 $rootPath = __DIR__;
 require_once $rootPath . "/vendor/autoload.php";
 
-use app\core\Application;
+use codexjoshy\sleekmvc\Application;
 
 
 $dotenv =  Dotenv\Dotenv::createImmutable(__DIR__);

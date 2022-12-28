@@ -2,11 +2,11 @@
 
 namespace app\controllers;
 
-use app\core\Application;
-use app\core\base\BaseController;
-use app\core\middlewares\AuthMiddleware;
-use app\core\Request;
-use app\core\Response;
+use codexjoshy\sleekmvc\Application;
+use codexjoshy\sleekmvc\base\BaseController;
+use codexjoshy\sleekmvc\middlewares\AuthMiddleware;
+use codexjoshy\sleekmvc\Request;
+use codexjoshy\sleekmvc\Response;
 use app\models\forms\Login;
 use app\models\User;
 

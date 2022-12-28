@@ -2,7 +2,7 @@
 
 
 /**
- * @var app\core\View $this
+ * @var codexjoshy\sleekmvc\View $this
  */
 $this->title = "Profile";
 ?>

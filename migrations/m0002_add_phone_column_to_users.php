@@ -1,7 +1,7 @@
 <?php
 
 
-use app\core\Application;
+use codexjoshy\sleekmvc\Application;
 
 class m0002_add_phone_column_to_users
 {
