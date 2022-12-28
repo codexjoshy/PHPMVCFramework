@@ -2,9 +2,11 @@
 
 namespace app\models;
 
+use app\core\Application;
 use app\core\DbModel;
+use app\core\UserModel;
 
-class User extends DbModel
+class User extends UserModel
 {
  const STATUS_INACTIVE = 0;
  const STATUS_ACTIVE = 1;
@@ -32,7 +34,10 @@ class User extends DbModel
  {
   return ["email", "name", "phone", "password", "status"];
  }
-
+ public function getDisplayName(): string
+ {
+  return $this->name ?? '';
+ }
  public function save()
  {
   $this->status = self::STATUS_INACTIVE;

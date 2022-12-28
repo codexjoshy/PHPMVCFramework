@@ -5,6 +5,7 @@ use app\core\Application;
 $successFlash = Application::$app->session->getFlash('success');
 $errorFlash = Application::$app->session->getFlash('error');
 $isGuest = Application::$app::isGuest();
+$displayName = !$isGuest ? Application::$app->user->getDisplayName() : '';
 ?>
 <!doctype html>
 <html lang="en">
@@ -52,7 +53,7 @@ $isGuest = Application::$app::isGuest();
      </li>
      <?php else : ?>
      <li class="nav-item">
-      <a class="nav-link" href="/profile">Profile</a>
+      <a class="nav-link" href="/profile"> <?= $displayName ?></a>
      </li>
      <li class="nav-item">
       <a class="nav-link" href="/logout">Logout</a>
