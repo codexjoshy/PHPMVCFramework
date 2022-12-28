@@ -3,6 +3,8 @@
 use app\core\Application;
 
 $successFlash = Application::$app->session->getFlash('success');
+$errorFlash = Application::$app->session->getFlash('error');
+$isGuest = Application::$app::isGuest();
 ?>
 <!doctype html>
 <html lang="en">
@@ -41,12 +43,24 @@ $successFlash = Application::$app->session->getFlash('success');
 
     </ul>
     <ul class="navbar-nav my-2 my-lg-0">
+     <?php if ($isGuest) : ?>
      <li class="nav-item">
       <a class="nav-link" href="/register">Register</a>
      </li>
      <li class="nav-item">
-      <a class="nav-link" href="/register">Login</a>
+      <a class="nav-link" href="/login">Login</a>
      </li>
+     <?php else : ?>
+     <li class="nav-item">
+      <a class="nav-link" href="/profile">Profile</a>
+     </li>
+     <li class="nav-item">
+      <a class="nav-link" href="/logout">Logout</a>
+     </li>
+     <?php endif; ?>
+
+
+
     </ul>
    </div>
   </nav>

@@ -25,6 +25,38 @@ class Session
   return $value;
  }
 
+ /**
+  * Undocumented function
+  *
+  * @param string $key
+  * @param string $value
+  * @return void
+  */
+ public function set(string $key, string $value)
+ {
+  $_SESSION[$key] = $value;
+ }
+ /**
+  * Undocumented function
+  *
+  * @param string $key
+  * @return void
+  */
+ public function get(string $key)
+ {
+  return $_SESSION[$key] ?? false;
+ }
+ /**
+  * Undocumented function
+  *
+  * @param string $key
+  * @return void
+  */
+ public function remove(string $key)
+ {
+  if ($this->get($key)) unset($_SESSION[$key]);
+ }
+
  public function __destruct()
  {
   // $flashMsgs = $_SESSION[self::FLASH_KEY] ?? [];

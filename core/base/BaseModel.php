@@ -28,7 +28,7 @@ abstract class BaseModel
 
  public array $errors = [];
 
- public function addError(string $attribute, string $rule, array $params = [])
+ private function addErrorForRule(string $attribute, string $rule, array $params = [])
  {
   $message = $this->errorMessages()[$rule] ?? '';
   if ($params) {
@@ -54,20 +54,20 @@ abstract class BaseModel
     $ruleName = $rule;
     if (is_array($ruleName)) $ruleName = $rule[0];
     if ($ruleName === self::RULE_REQUIRED && !$value) {
-     $this->addError($attribute, self::RULE_REQUIRED);
+     $this->addErrorForRule($attribute, self::RULE_REQUIRED);
     }
     if ($ruleName === self::RULE_EMAIL && !filter_var($value, FILTER_SANITIZE_EMAIL)) {
-     $this->addError($attribute, self::RULE_REQUIRED);
+     $this->addErrorForRule($attribute, self::RULE_REQUIRED);
     }
     if ($ruleName === self::RULE_MIN && strlen($value) < $rule[self::RULE_MIN]) {
-     $this->addError($attribute, self::RULE_MIN, $rule);
+     $this->addErrorForRule($attribute, self::RULE_MIN, $rule);
     }
     if ($ruleName === self::RULE_MAX && strlen($value) > $rule[self::RULE_MAX]) {
-     $this->addError($attribute, self::RULE_MAX, $rule);
+     $this->addErrorForRule($attribute, self::RULE_MAX, $rule);
     }
     if ($ruleName === self::RULE_MATCH && $value !== $this->{$rule[self::RULE_MATCH]}) {
      $rule[self::RULE_MATCH] = $this->getLabel($rule[self::RULE_MATCH]);
-     $this->addError($attribute, self::RULE_MATCH, $rule);
+     $this->addErrorForRule($attribute, self::RULE_MATCH, $rule);
     }
     if ($ruleName === self::RULE_UNIQUE) {
      $className = $rule['class'];
@@ -80,13 +80,18 @@ abstract class BaseModel
       $statement->bindValue(":$uniqueAttr", $value);
       $statement->execute();
       $record = $statement->fetchObject();
-      if ($record) $this->addError($attribute, self::RULE_UNIQUE, ['field' =>  $this->getLabel($attribute)]);
+      if ($record) $this->addErrorForRule($attribute, self::RULE_UNIQUE, ['field' =>  $this->getLabel($attribute)]);
      }
     }
    }
    $data[$attribute] = $value;
   }
   return count($this->errors) ? false : $data;
+ }
+
+ public function addError(string $attribute, string $message)
+ {
+  $this->errors[$attribute][] = $message;
  }
 
  public function hasError($attribute)
