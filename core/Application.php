@@ -3,6 +3,8 @@
 namespace app\core;
 
 use app\core\base\BaseController;
+use app\core\db\Database;
+use app\core\db\DbModel;
 
 class Application
 {

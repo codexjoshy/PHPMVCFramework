@@ -17,6 +17,6 @@ class Form
  }
  public  function field(BaseModel $model, $attribute, string $type = 'text')
  {
-  return new Field($model, $attribute, $type);
+  return new InputField($model, $attribute, $type);
  }
 }
